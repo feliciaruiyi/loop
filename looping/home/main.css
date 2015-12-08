@@ -56,6 +56,19 @@ body {
     font-weight:bold;
 }
 
+#home-page-link {
+    color: white;
+    font-size:25px;
+    padding: 5px 10px 5px 10px;
+    font-weight:bold;
+    background-color: #71EEB8;
+    text-decoration: none;
+}
+
+a#home-page-link:hover {
+    text-decoration: underline;
+}
+
 #fb-login {
     border:none;
     width: 253px;
