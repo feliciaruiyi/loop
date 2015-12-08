@@ -98,39 +98,44 @@ function createUserChunk (user) {
     return user_chunk;
 }
 
-(function( $ ){
-   $.fn.switchGroup = function(group) {
-       $(document).find('#project-title').html(group.title);
-       
-       // Replace posts
-       $('.post-chunk').remove();
-       
-       for (var i = 0; i < group.posts.length; i+=1) {
-           var post = group.posts[i],
-               post_chunk = createPostChunk(post);
-           $(document).find("#bulletin-post").append(post_chunk);
-       }
-       
-       //Replace users
-       $('.user-chunk').remove();
-       
-       for (var i = 0; i < group.members.length; i+=1) {
-           var user = group.members[i],
-               user_chunk = createUserChunk(user);
-           $(document).find("#users").append(user_chunk);
-       }
-      return this;
-   }; 
-})( jQuery );
+
+function createFileChunk (file) {
+  var file_chunk = document.createElement("div"),
+      file_link = document.createElement("a");
+    
+    file_chunk.className = "file-chunk";
+    file_link.href = file.link;
+    file_link.target = "blank";
+    file_link.innerHTML = file.name;
+    file_chunk.appendChild(file_link);
+    
+    return file_chunk;
+}
+
+function createDriveLink (group) {
+  var drive_chunk = document.createElement("div"),
+      drive_link = document.createElement("a");
+    
+    drive_chunk.className = "drive-link";
+    drive_link.href = group.drive_link;
+    drive_link.target = "blank";
+    drive_link.innerHTML = "Go to our '".concat(group.title).concat("' Drive!");
+    drive_chunk.appendChild(drive_link);
+    
+    return drive_chunk;
+}
 
 $(window).load(function () {
     "use strict";
     
     $('#users .user-chunk').click(function () {
+        console.log("Something was clicked");
         if (!$(this).hasClass('selected')) {
             $('#users .selected').removeClass('selected');
             $(this).addClass('selected');
         }
+            $('#users .selected').removeClass('selected');
+            $(this).addClass('selected');        
     });
     
     $('#nav .nav-chunk').click(function () {
@@ -139,6 +144,8 @@ $(window).load(function () {
             $(this).addClass('selected');
             
             if (this.id == "bulletin-board-button") {
+                $(document).find('#profile-post').css("display", "none");
+                $(document).find('#calendar-post').css("display", "none");
                 $(document).find('#bulletin-post').html("");
                 
                 var group = groups[$(document).find("#conversations .selected li .group-title").html()];
@@ -156,27 +163,37 @@ $(window).load(function () {
                         post_chunk = createPostChunk(post);
                     $(document).find("#bulletin-post").append(post_chunk);
                 }
-
-                //Replace users
-                $('.user-chunk').remove();
-
-                for (var i = 0; i < group.members.length; i+=1) {
-                    var user = group.members[i],
-                        user_chunk = createUserChunk(user);
-                    $(document).find("#users").append(user_chunk);
-                }
             }
             
             if (this.id == "calendar-button") {
-                $(document).find('#bulletin-post').html("<span>Calendar!</span>");                
+                $(document).find('#bulletin-post').html("");
+                $(document).find('#profile-post').css("display", "none");
+                $(document).find('#calendar-post').css("display", "");
             }
             
             if (this.id == "drive-button") {
-                $(document).find('#bulletin-post').html("<span>Drive!</span>");                
+                $(document).find('#calendar-post').css("display", "none");
+                $(document).find('#profile-post').css("display", "none");
+                var newTitle = $('#conversations .selected .group-title').html(),
+                    post_section = $(document).find('#bulletin-post').html("<span>Drive Link:</span><br><br>");
+                post_section.append(createDriveLink(groups[newTitle]));
+                
             }
             
             if (this.id == "files-button") {
-                $(document).find('#bulletin-post').html("<span>Files!</span>");                
+                $(document).find('#calendar-post').css("display", "none");
+                $(document).find('#profile-post').css("display", "none");
+                var newTitle = $('#conversations .selected .group-title').html(),
+                    post_section = $(document).find('#bulletin-post').html("<span>Your Files:</span><br><br>");
+                for (var i = 0; i < groups[newTitle].files.length; i+=1) {
+                    post_section.append(createFileChunk(groups[newTitle].files[i]));
+                }
+            }
+            
+            if (this.id == "profile-button") {
+                $(document).find('#bulletin-post').html("");
+                $(document).find('#calendar-post').css("display", "none");
+                $(document).find('#profile-post').css("display", "");
             }
         }
     });
@@ -190,30 +207,41 @@ $(window).load(function () {
             $(document).find('#project-title').html(newTitle);
 
             $('#placeholder-text').remove();
-                        
-            // Replace write post block
-            $('#header-post').remove();
             
-            $(document).find("#bulletin-post").append(createWritePostBlock());
-            
-            // Replace posts
-            $('.post-chunk').remove();
-            
-            for (var i = 0; i < group.posts.length; i+=1) {
-                var post = group.posts[i],
-                    post_chunk = createPostChunk(post);
-                $(document).find("#bulletin-post").append(post_chunk);
+            if ($('#bulletin-board-button').hasClass("selected")) {
+                // Replace write post block
+                $('#header-post').remove();
+
+                $(document).find("#bulletin-post").append(createWritePostBlock());
+
+                // Replace posts
+                $('.post-chunk').remove();
+
+                for (var i = 0; i < group.posts.length; i+=1) {
+                    var post = group.posts[i],
+                        post_chunk = createPostChunk(post);
+                    $(document).find("#bulletin-post").append(post_chunk);
+                }
             }
-            
+
             //Replace users
             $('.user-chunk').remove();
 
             for (var i = 0; i < group.members.length; i+=1) {
                 var user = group.members[i],
                     user_chunk = createUserChunk(user);
+                if (i === 0) {
+                    user_chunk.className = 'user-chunk selected';
+                }
                 $(document).find("#users").append(user_chunk);
             }
-
+            
+            $('#users .user-chunk').click(function () {
+                if (!$(this).hasClass('selected')) {
+                    $('#users .selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }      
+            });
         }
     });
     
@@ -223,4 +251,9 @@ $(window).load(function () {
             $(this).addClass('selected');         
         }
     });
+    
+    $('#prof-name-section').append("<span class='prof-section-content'>" + self.fname + " " + self.lname + "</span>");
+    
+        $('#prof-about-section').append("<br>");
+    $('#prof-about-section').append("<span class='prof-section-content'>" + self.about + "</span>");
 });

@@ -65,6 +65,7 @@ body {
     padding:30px 30px 30px 35px;
     overflow: hidden;
     width:545px;
+    height: 50px;
 }
 
 #tab-bar {
@@ -120,6 +121,15 @@ br.clearLeft {
     color: #3aab9a;
 }
 
+#nav li#profile-button a {
+    color: gray;
+    font-weight: 400;
+    margin-left: 150px;
+}
+
+#nav li.selected#profile-button a {
+    color: #3aab9a;
+}
 
 #bottom-left {
 }
@@ -362,6 +372,72 @@ br.clearLeft {
     color: gray;
 }
 
+#calendar-post {
+    overflow: auto;
+}
+
+#calendar-post button.calendar-buttons {
+    background: gray;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 10px;
+}
+
+#calendar-post button.calendar-buttons:hover {
+   text-decoration: underline;   
+}
+
+#calendar-post #navButtons {
+    width:70%;
+    margin: auto;
+}
+
+#authorize-div {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+
+}
+
+#authorize-div span{
+    font-size:20px;
+}
+
+#bulletin-post .file-chunk {
+    background: none;
+}
+
+#bulletin-post .drive-link {
+    background: none;
+}
+
+#profile-post {
+    margin-top: 5px;
+    width:100%;
+    overflow: auto;
+}
+
+#profile-post .section-title {
+    font-size: 20px;
+    color: gray;
+}
+#profile-post #prof-img-section div {
+    width: 25%;
+    margin: auto;
+}
+
+#profile-post .fb-photo {
+    width: 130px;
+}
+
+#profile-post #prof-name-section {
+    font-size: 20px;
+}
+
+#profile-post #prof-about-section {
+    font-size: 18px;
+}
 
 #right-block {
     left:735px;
@@ -451,7 +527,6 @@ br.clearLeft {
     border-radius: 5px;  
     padding: 0;
 }
-
 
 #text-box #text-box-content {
     color: #c4c4c4;

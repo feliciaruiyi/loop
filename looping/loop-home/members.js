@@ -1,9 +1,13 @@
 var members = {
-    "Gail" : {
-        "name" : "Gail",
-        "pic" : "gail_prof_pic.jpg",
+    "Felicia" : {
+        "name" : "Felicia",
+        "fname" : "Felicia",
+        "lname" : "Wang",
+        "email" : "frw@andrew.cmu.edu",
+        "pic" : "felicia_prof_pic.jpg",
         "groups" : ["Social Web Final Project", "Roommates"],
         "last-message" : "Sounds Great!"
+        // 'calColor': '#19235D'
     },
     "Evi" : {
         "name" : "Evi",
@@ -25,26 +29,53 @@ var members = {
     },
     "Justin" : {
         "name" : "Justin",
-        "pic" : "user-icon.png",
+        "pic" : "jesse_prof_pic.jpg",
         "groups" : ["15110 Staff", "Management Game", "Swim Team Seniors"],
         "last-message" : "Goodnight!"
     },
     "Andrew" : {
         "name" : "Andrew",
-        "pic" : "user-icon.png",
+        "pic" : "andrew_prof_pic.jpg",
         "groups" : ["15110 Staff", "Management Game", "Swim Team Seniors"],
         "last-message" : "Parting is such sweet sorrow"
     },
     "Jonathan" : {
         "name" : "Jonathan",
-        "pic" : "user-icon.png",
+        "pic" : "johnathan_prof_pic.jpg",
         "groups" : ["15110 Staff", "Management Game", "Swim Team Seniors"],
         "last-message" : "That I shall say Goodnight"
     },
     "Tim" : {
         "name" : "Tim",
-        "pic" : "user-icon.png",
+        "pic" : "tim_prof_pic.jpg",
         "groups" : ["15110 Staff", "Management Game"],
         "last-message" : "Till it be morrow"
+    },
+    "Angela" : {
+        "name" : "Angela",
+        "fname" : "Angela",
+        "lname" : "Liu",
+        "email" : "angelaliu22@gmail.com",
+        "pic" : "user-icon.png",
+        "groups" : [],
+        "last-message" : "Yaaay! Calendar hookup!"
+        // 'calColor': '#DBDBDB'
     }
 };
+
+
+var membersList = [ { 'fname': 'Felicia',
+                      'lname': 'Wang',
+                      'email': 'frw@andrew.cmu.edu'
+                      // 'calColor': '#19235D'
+                    },
+                    { 'fname': 'Gail',
+                      'lname': 'Wilson',
+                      'email': 'gail.de.wilson@gmail.com'
+                      // 'calColor': '##DBDBDB'
+                    },
+                    { 'fname': 'Angela',
+                      'lname': 'Liu',
+                      'email': 'angelaliu22@gmail.com'
+                      // 'calColor': '#DBDBDB'
+                    }];

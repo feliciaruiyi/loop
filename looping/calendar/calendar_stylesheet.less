@@ -1,0 +1,241 @@
+/* Color Palette */
+@base: #71EEB8;
+@highlight: #02B881;
+@accent: #19235D;
+@neutral: #AAAAAA;
+@neutralBackground: #DBDBDB;
+
+body { 
+	font-family: "Scala Sans", sans-serif; 
+	margin: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+#calendarContainer {
+	// width: 500px;
+	overflow: auto;
+}
+
+table#calendar {
+	display: inline-block;
+	// border: 1px solid @neutral;
+	border-collapse: collapse;
+	// width: 500px;
+}
+
+@dayColWidth: 150px;
+
+td.weekdayTitle {
+	border: 1px solid @neutral;
+	border-collapse: collapse;
+	font-size: 14pt;
+	text-align: center;
+	font-weight: 200;
+	width: @dayColWidth;
+	padding-top: 3px;
+	vertical-align: middle;
+}
+
+td.weekendTitle {
+	border: 1px solid @neutral;
+	border-collapse: collapse;
+	font-size: 14pt;
+	text-align: center;
+	font-weight: 200;
+	color: @neutral;
+	width: @dayColWidth;
+	padding-top: 3px;
+	vertical-align: middle;
+}
+
+@calHeight: 600px;
+@hourHeight: 80px;
+
+#calEventsContainer {
+	height: @calHeight;
+	overflow: scroll;
+	border: 1px solid @neutral;
+}
+
+#calEvents {
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.hourMarker {
+	vertical-align: super;
+	text-align: right;
+	font-weight: 200;
+	color: @neutral;
+}
+
+#hour12 {
+	font-weight: 400;
+	color: black;
+}
+
+td.hourSlot {
+	position: relative;
+	border: 1px solid @neutral;
+	border-collapse: collapse;
+	width: @dayColWidth;
+	height: @hourHeight;
+	overflow: visible;
+}
+
+.event {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border: 1px solid @highlight;
+	overflow: hidden;
+	padding: 5px;
+	background-color: @base;
+	color: black;
+	box-sizing: border-box; // Set width to 100% accounting for padding
+	border-radius: 3px;
+}
+
+.eventOther {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border: 1px solid @highlight;
+	overflow: hidden;
+	padding: 5px;
+	background-color: @neutralBackground;
+	color: #666666;
+	box-sizing: border-box; // Set width to 100% accounting for padding
+	border-radius: 3px;
+}
+
+.eventSelected {
+	background-color: @accent;
+	color: white;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border: 1px solid @accent;
+	overflow: hidden;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+div.eventContainer {
+	overflow: hidden;
+}
+
+.eventTitle {
+	display: block;
+	margin-bottom: 2px;
+}
+
+.eventStart {
+	display: block;
+}
+
+/* Style for add event window */
+
+#addEventWindow {
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	z-index: 1;
+	padding: 20px;
+	background-color: @neutral;
+}
+
+.eventInputField {
+	height: 30px;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 4px; 
+	border: solid;
+	border-width: 2px;
+	border-color: @highlight;
+}
+
+#eventInputTitle {
+	width: 100%;
+}
+
+#eventInputStart, #eventInputEnd {
+	display: inline-block;
+}
+
+#eventInputCalsCont {
+	width: 100%;
+	margin: 10px;
+}
+
+
+/* Event edit window styles */
+
+.eventEditWindow {
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	border-color: @neutral;
+	border-width: 1px;
+	border-radius: 4px;
+	border: solid;
+	z-index: 1;
+	padding: 10px;
+	background-color: white;
+}
+
+.eventEditChild {
+	margin: 5px 0px;
+	display: block;
+}
+
+/* Group event styles */
+
+#planGroupEventPanel {
+	display: inline-block;
+	position: absolute;
+	// right: -10%;
+	float: right;
+	background-color: @accent;
+	color: white;
+	z-index: 2;
+	padding: 10px;
+}
+
+.groupEventInput {
+	margin: 15px;
+}
+
+#groupEventInputTitleCont {
+	width: 100%;
+}
+
+#participantsTitle {
+	display: inline-block;
+}
+
+#inputParticipantsContainer {
+	display: inline-block;
+}
+
+.ghostEvent { 
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border: 1px solid black;
+	overflow: hidden;
+	padding: 5px;
+	background-color: @highlight;
+	color: #666666;
+	box-sizing: border-box; // Set width to 100% accounting for padding
+	border-radius: 3px;
+	z-index: 2;
+}
+
+
+
